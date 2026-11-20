@@ -1,0 +1,347 @@
+{
+  "name": "zovo-mdb-viewer",
+  "displayName": "MDB Viewer & ACCDB, Access DB",
+  "description": "MDB viewer for VS Code: open Microsoft Access .mdb and .accdb databases read-only. See every table with its row count, browse rows with paging, sort and filter, copy cells, and read the schema of each table. Nothing else to install. Offline, no account.",
+  "version": "0.1.0",
+  "publisher": "zovo",
+  "license": "MIT",
+  "icon": "icon.png",
+  "galleryBanner": {
+    "color": "#2B1B24",
+    "theme": "dark"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/theluckystrike/mdb-viewer-vscode"
+  },
+  "bugs": {
+    "url": "https://github.com/theluckystrike/mdb-viewer-vscode/issues"
+  },
+  "homepage": "https://github.com/theluckystrike/mdb-viewer-vscode#readme",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Visualization",
+    "Data Science",
+    "Other"
+  ],
+  "keywords": [
+    "mdb",
+    "accdb",
+    "access",
+    "database",
+    "jet"
+  ],
+  "main": "./src/extension.js",
+  "activationEvents": [
+    "onUri"
+  ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true
+    },
+    "virtualWorkspaces": true
+  },
+  "contributes": {
+    "customEditors": [
+      {
+        "viewType": "mdbViewer.database",
+        "displayName": "MDB Viewer",
+        "selector": [
+          {
+            "filenamePattern": "*.mdb"
+          },
+          {
+            "filenamePattern": "*.mde"
+          },
+          {
+            "filenamePattern": "*.accdb"
+          },
+          {
+            "filenamePattern": "*.accde"
+          }
+        ],
+        "priority": "default"
+      }
+    ],
+    "commands": [
+      {
+        "command": "mdbViewer.openWithViewer",
+        "title": "Open with MDB Viewer",
+        "category": "MDB Viewer",
+        "icon": "$(table)"
+      },
+      {
+        "command": "mdbViewer.openSample",
+        "title": "Open the Sample ACCDB",
+        "category": "MDB Viewer"
+      },
+      {
+        "command": "mdbViewer.openSampleMdb",
+        "title": "Open the Sample MDB",
+        "category": "MDB Viewer"
+      },
+      {
+        "command": "mdbViewer.openWalkthrough",
+        "title": "Get Started",
+        "category": "MDB Viewer"
+      },
+      {
+        "command": "mdbViewer.moreViewers",
+        "title": "More free tools by Zovo",
+        "category": "MDB Viewer"
+      },
+      {
+        "command": "mdbViewer.supportDeveloper",
+        "title": "Support the developer",
+        "category": "MDB Viewer"
+      },
+      {
+        "command": "mdbViewer.exportData",
+        "title": "Export to CSV and JSON (Pro)",
+        "category": "MDB Viewer",
+        "icon": "$(export)"
+      },
+      {
+        "command": "mdbViewer.exportSqlite",
+        "title": "Export to SQLite (Pro)",
+        "category": "MDB Viewer",
+        "icon": "$(database)"
+      },
+      {
+        "command": "mdbViewer.schemaSql",
+        "title": "Schema as SQL (Pro)",
+        "category": "MDB Viewer",
+        "icon": "$(symbol-structure)"
+      },
+      {
+        "command": "mdbViewer.compare",
+        "title": "Compare Two Access Files (Pro)",
+        "category": "MDB Viewer",
+        "icon": "$(diff)"
+      },
+      {
+        "command": "mdbViewer.zovoPro.exportData",
+        "title": "Zovo Pro: Export to CSV and JSON"
+      },
+      {
+        "command": "mdbViewer.zovoPro.exportSqlite",
+        "title": "Zovo Pro: Export to SQLite"
+      },
+      {
+        "command": "mdbViewer.zovoPro.schemaSql",
+        "title": "Zovo Pro: Schema as SQL"
+      },
+      {
+        "command": "mdbViewer.zovoPro.compare",
+        "title": "Zovo Pro: Compare two Access files"
+      },
+      {
+        "command": "mdbViewer.getPro",
+        "title": "Get Zovo Pro (USD 19 once, all Zovo extensions)",
+        "category": "Zovo Pro"
+      },
+      {
+        "command": "mdbViewer.payWithPayPal",
+        "title": "Pay for Zovo Pro with PayPal (USD 19, team of 5 USD 59)",
+        "category": "Zovo Pro"
+      },
+      {
+        "command": "mdbViewer.unlockWithSponsors",
+        "title": "I already paid: unlock with GitHub Sponsors",
+        "category": "Zovo Pro"
+      },
+      {
+        "command": "mdbViewer.enterLicenseKey",
+        "title": "Enter Zovo Pro license key",
+        "category": "Zovo Pro"
+      },
+      {
+        "command": "mdbViewer.removeLicense",
+        "title": "Remove Zovo Pro from this editor",
+        "category": "Zovo Pro"
+      },
+      {
+        "command": "mdbViewer.payByCard",
+        "title": "Pay for Zovo Pro by card (USD 19)",
+        "category": "Zovo Pro"
+      },
+      {
+        "command": "mdbViewer.enterKey",
+        "title": "Enter a key",
+        "category": "Zovo Pro"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "mdbViewer.exportData",
+          "when": "activeCustomEditorId == 'mdbViewer.database' && config.mdbViewer.showProTools",
+          "group": "1_mdb@1"
+        },
+        {
+          "command": "mdbViewer.exportSqlite",
+          "when": "activeCustomEditorId == 'mdbViewer.database' && config.mdbViewer.showProTools",
+          "group": "1_mdb@2"
+        },
+        {
+          "command": "mdbViewer.schemaSql",
+          "when": "activeCustomEditorId == 'mdbViewer.database' && config.mdbViewer.showProTools",
+          "group": "1_mdb@3"
+        },
+        {
+          "command": "mdbViewer.compare",
+          "when": "activeCustomEditorId == 'mdbViewer.database' && config.mdbViewer.showProTools",
+          "group": "1_mdb@4"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "mdbViewer.openWithViewer",
+          "when": "resourceFilename =~ /\\.(mdb|mde|accdb|accde)$/i && !explorerResourceIsFolder",
+          "group": "navigation@9"
+        },
+        {
+          "command": "mdbViewer.zovoPro.exportData",
+          "when": "resourceFilename =~ /\\.(mdb|mde|accdb|accde)$/i && !explorerResourceIsFolder && config.mdbViewer.showProTools",
+          "group": "zovoPro@1"
+        },
+        {
+          "command": "mdbViewer.zovoPro.exportSqlite",
+          "when": "resourceFilename =~ /\\.(mdb|mde|accdb|accde)$/i && !explorerResourceIsFolder && config.mdbViewer.showProTools",
+          "group": "zovoPro@2"
+        },
+        {
+          "command": "mdbViewer.zovoPro.schemaSql",
+          "when": "resourceFilename =~ /\\.(mdb|mde|accdb|accde)$/i && !explorerResourceIsFolder && config.mdbViewer.showProTools",
+          "group": "zovoPro@3"
+        },
+        {
+          "command": "mdbViewer.zovoPro.compare",
+          "when": "resourceFilename =~ /\\.(mdb|mde|accdb|accde)$/i && !explorerResourceIsFolder && config.mdbViewer.showProTools",
+          "group": "zovoPro@4"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "mdbViewer.exportData",
+          "when": "config.mdbViewer.showProTools"
+        },
+        {
+          "command": "mdbViewer.exportSqlite",
+          "when": "config.mdbViewer.showProTools"
+        },
+        {
+          "command": "mdbViewer.schemaSql",
+          "when": "config.mdbViewer.showProTools"
+        },
+        {
+          "command": "mdbViewer.compare",
+          "when": "config.mdbViewer.showProTools"
+        },
+        {
+          "command": "mdbViewer.zovoPro.exportData",
+          "when": "false"
+        },
+        {
+          "command": "mdbViewer.zovoPro.exportSqlite",
+          "when": "false"
+        },
+        {
+          "command": "mdbViewer.zovoPro.schemaSql",
+          "when": "false"
+        },
+        {
+          "command": "mdbViewer.zovoPro.compare",
+          "when": "false"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "MDB Viewer",
+      "properties": {
+        "mdbViewer.pageSize": {
+          "type": "number",
+          "default": 100,
+          "enum": [
+            50,
+            100,
+            250,
+            500,
+            1000
+          ],
+          "description": "Rows per page in the data view. The page size picker in the viewer changes it for the open tab."
+        },
+        "mdbViewer.showProTools": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the Zovo Pro tools (export to CSV and JSON, export to SQLite, schema as SQL, compare two files) in the Command Palette, the Explorer menu and the viewer toolbar. Everything free stays visible."
+        },
+        "mdbViewer.askForRating": {
+          "type": "boolean",
+          "default": true,
+          "description": "Ask once for a Marketplace rating after databases opened without an error on two occasions at least 30 minutes apart. \"Later\" asks one more time after 7 days, \"No thanks\" never asks again. Nothing is sent anywhere."
+        },
+        "mdbViewer.showSupportLinks": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the small Rate, More free tools and Zovo Pro links at the bottom of the viewer. Nothing is sent anywhere."
+        },
+        "zovo.mdb.trial.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show the 7-day Zovo Pro trial button in the Pro panel."
+        }
+      }
+    },
+    "walkthroughs": [
+      {
+        "id": "mdbViewer.start",
+        "title": "Get started with the MDB Viewer",
+        "description": "Open Microsoft Access databases in VS Code, read-only.",
+        "steps": [
+          {
+            "id": "open",
+            "title": "Open a .mdb or .accdb file",
+            "description": "Click an Access database in the Explorer. Its tables are listed with their row counts; click one to see its rows, sort by a column, filter, and copy a cell.\n[Open the sample ACCDB](command:mdbViewer.openSample)",
+            "media": {
+              "image": "images/screenshot.png",
+              "altText": "A sample Access database open in VS Code: the table list with row counts, the Orders rows sorted by date, and the file facts."
+            },
+            "completionEvents": [
+              "onCommand:mdbViewer.openSample"
+            ]
+          },
+          {
+            "id": "schema",
+            "title": "The schema of every table",
+            "description": "The Schema tab lists every column with its Access type and whether it is required. Tick System tables to see the MSys tables too.\n[Open the sample MDB](command:mdbViewer.openSampleMdb)",
+            "media": {
+              "markdown": "walkthrough/schema.md"
+            },
+            "completionEvents": [
+              "onCommand:mdbViewer.openSampleMdb"
+            ]
+          },
+          {
+            "id": "zovo-related",
+            "title": "Tools that often go with Access files",
+            "description": "These free Zovo extensions open the files you export. A link opens the extension page, and you choose there whether to install it.\n[SQLite Viewer](command:extension.open?%5B%22zovo.sqlite-table-viewer%22%5D)\n[CSV and Excel Viewer](command:extension.open?%5B%22zovo.table-viewer-vscode%22%5D)\n[Hex Viewer](command:extension.open?%5B%22zovo.zovo-hex-viewer%22%5D)",
+            "media": {
+              "markdown": "walkthrough/related.md"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "scripts": {
+    "test": "node scripts/test.js",
+    "package": "npx -y @vscode/vsce@3 package --no-dependencies"
+  },
+  "devDependencies": {},
+  "sponsor": {
+    "url": "https://github.com/sponsors/theluckystrike/sponsorships?tier_id=679878"
+  }
+}
